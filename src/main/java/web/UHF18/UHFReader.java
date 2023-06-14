@@ -1,5 +1,7 @@
 package web.UHF18;
 
+import org.json.JSONTokener;
+import org.springframework.core.io.ClassPathResource;
 import web.UHF.Reader18;
 import org.json.JSONObject;
 import web.uhf18win.DbFunctions;
@@ -18,7 +20,16 @@ import java.util.TimerTask;
 
 public class UHFReader {
 	static{
-	 	System.loadLibrary("UHF_Reader18");
+	 	//System.loadLibrary("UHF_Reader18");
+        String s = "";
+        ClassPathResource resource = new ClassPathResource("dll/UHF_Reader18.dll");
+        try {
+            s = resource.getFile().getAbsolutePath();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println(s);
+        System.load(s);
 	}
     public boolean timeQyery=false;
     public boolean Qyeryflag=false;
